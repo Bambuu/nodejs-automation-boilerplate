@@ -1,0 +1,34 @@
+{
+	"version": "0.1.0",
+	"devDependencies": {
+		"prettier": "latest",
+		"tslint": "latest",
+		"jest": "latest",
+		"plop": "latest",
+		"source-map-explorer": "latest",
+		"husky": "latest1",
+		"lint-staged": "latest"
+	},
+	"scripts": {
+		"lint": "tslint 'src/**/*.{ts,tsx}'",
+		"format": "prettier --write \"{./*.{ts,js,json},src/**/*.{js,ts,tsx}}\"",
+		"build": "LOLOLOL",
+		"test": "LOLOLOL",
+		"analyze": "source-map-explorer build/static/js/main.*",
+		"analyze:ci": "source-map-explorer --html build/static/js/main.* > ./size-analysis.html",
+		"precommit": "lint-staged",
+		"postcommit": "git reset"
+	},
+	"prettier": {
+		"singleQuote": true,
+		"trailingComma": "all",
+		"useTabs": true,
+		"printWidth": 100
+	},
+	"lint-staged": {
+		"{./*.{ts,js,json},src/**/*.{js,ts,tsx}}": [
+			"prettier --print-width 100 --write --use-tabs --single-quote --trailing-comma all",
+			"git add"
+		]
+	}
+}

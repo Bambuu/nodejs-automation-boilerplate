@@ -1,0 +1,3 @@
+export const {{camelCase name}}Component = ( {{camelCase name}}Value: string) => {
+	return 'This is the {{name}}Component and is fetching nice things using ' + {{camelCase name}}Value;
+};
