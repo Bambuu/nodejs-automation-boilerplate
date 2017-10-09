@@ -103,8 +103,8 @@ project-root
 │   
 └───src
 │   │   index.ts                 // Example code
-│	└───components               // Example code
-│	└───__tests__                // Example tests
+│   └───components               // Example code
+│   └───__tests__                // Example tests
 │
 └───.circleci
 │   │   config.yml               // Configuration for the CircleCI steps
