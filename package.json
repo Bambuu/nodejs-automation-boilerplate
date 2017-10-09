@@ -1,5 +1,6 @@
 {
 	"version": "0.1.0",
+	"author": "bambuu",
 	"devDependencies": {
 		"@types/jest": "^21.1.2",
 		"@types/node": "^8.0.33",

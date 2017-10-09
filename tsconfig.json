@@ -13,10 +13,12 @@
 		"strict": true
 	},
 	"include": [
-		"src/**/*"
+		"./src/**/*"
 	],
 	"exclude": [
 		"node_modules",
-		"build"
+		"build",
+		"./src/**/__tests__/*",
+		"./src/**/*.test*"
 	]
 }

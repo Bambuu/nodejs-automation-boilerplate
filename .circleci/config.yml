@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+
+      - run:
+          name: Installing Yarn dependencies
+          command: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+            - ~/.cache/yarn
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+      - run:
+          name: Linting
+          when: on_success
+          command: yarn lint
+
+      - restore_cache:
+          keys:
+          - v1-jest-cache
+
+      - run:
+          name: Testing
+          when: always
+          command: yarn test
+
+      - save_cache:
+          paths:
+            - .tmp/jest-cache
+          key: v1-jest-cache
+
+      - run:
+          name: Building
+          when: on_success
+          command: yarn build
+
+      - deploy:
+          name: Maybe deploying
+          when: on_success
+          command: .circleci/deploy.sh
+
+      - run:
+          name: Analyzing dependency size
+          when: always
+          command: yarn analyze:ci
+
+      - store_artifacts:
+          path: ./size-analysis.html
