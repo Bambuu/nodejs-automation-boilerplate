@@ -13,7 +13,7 @@
 	"scripts": {
 		"lint": "tslint 'src/**/*.{ts,tsx}'",
 		"format": "prettier --write \"{./*.{ts,js,json},src/**/*.{js,ts,tsx}}\"",
-		"build": "LOLOLOL",
+		"build": "tsc",
 		"test": "LOLOLOL",
 		"analyze": "source-map-explorer build/static/js/main.*",
 		"analyze:ci": "source-map-explorer --html build/static/js/main.* > ./size-analysis.html",
