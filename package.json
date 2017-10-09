@@ -1,7 +1,10 @@
 {
 	"version": "0.1.0",
 	"devDependencies": {
+		"@types/jest": "^21.1.2",
+		"@types/node": "^8.0.33",
 		"husky": "latest",
+		"ts-jest": "latest",
 		"jest": "latest",
 		"lint-staged": "latest",
 		"plop": "latest",
@@ -14,9 +17,11 @@
 		"lint": "tslint 'src/**/*.{ts,tsx}'",
 		"format": "prettier --write \"{./*.{ts,js,json},src/**/*.{js,ts,tsx}}\"",
 		"build": "tsc",
-		"test": "LOLOLOL",
-		"analyze": "source-map-explorer build/static/js/main.*",
-		"analyze:ci": "source-map-explorer --html build/static/js/main.* > ./size-analysis.html",
+		"test": "jest",
+		"watch": "jest --watch",
+		"typecheck": "tsc --noEmit",
+		"analyze": "source-map-explorer build/index.*",
+		"analyze:ci": "source-map-explorer --html build/index.* > ./size-analysis.html",
 		"precommit": "lint-staged",
 		"postcommit": "git reset"
 	},
@@ -25,6 +30,23 @@
 		"trailingComma": "all",
 		"useTabs": true,
 		"printWidth": 100
+	},
+	"jest": {
+		"testEnvironment": "node",
+		"transform": {
+			".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+		},
+		"testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"json"
+		],
+		"globals": {
+			"__TEST__": true
+		},
+		"cacheDirectory": "./.tmp/jest-cache"
 	},
 	"lint-staged": {
 		"{./*.{ts,js,json},src/**/*.{js,ts,tsx}}": [
