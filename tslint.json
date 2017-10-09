@@ -1,5 +1,5 @@
 {
-	"extends": ["tslint-react"],
+	"extends": ["react"],
 	"rules": {
 		"class-name": true,
 		"forin": true,

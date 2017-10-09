@@ -18,14 +18,13 @@ module.exports = function(plop) {
 				message: 'Will the component fetch data over the network?',
 			},
 		],
-		actions: (answers) => {
+		actions: answers => {
 			const fetching = answers.isFetching ? '.fetching' : '';
 
 			return [
 				{
 					type: 'add',
-					path:
-						'src/components/{{dashCase name}}.ts',
+					path: 'src/components/{{dashCase name}}.ts',
 					templateFile: `templates/component${fetching}.hsb`,
 				},
 				{
@@ -39,8 +38,7 @@ module.exports = function(plop) {
 					type: 'modify',
 					path: 'src/index.ts',
 					pattern: /(\/\/log components)/i,
-					template:
-						"$1\nconsole.log({{camelCase name}}Component('cool value'));",
+					template: "$1\nconsole.log({{camelCase name}}Component('cool value'));",
 				},
 				() => `Component creation succesful!`,
 			];

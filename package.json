@@ -1,13 +1,14 @@
 {
 	"version": "0.1.0",
 	"devDependencies": {
-		"prettier": "latest",
-		"tslint": "latest",
+		"husky": "latest",
 		"jest": "latest",
+		"lint-staged": "latest",
 		"plop": "latest",
+		"prettier": "latest",
 		"source-map-explorer": "latest",
-		"husky": "latest1",
-		"lint-staged": "latest"
+		"tslint": "latest",
+		"typescript": "latest"
 	},
 	"scripts": {
 		"lint": "tslint 'src/**/*.{ts,tsx}'",
