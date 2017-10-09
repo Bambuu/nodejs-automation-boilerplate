@@ -18,16 +18,31 @@ That last bit is important. If you have any suggestions or something you want to
 
 # Using it
 
+The repo is mainly a collection of configuration files, but also includes some examples, for the tools to be able to work.
+To try out the tools, clone the repo, run `yarn install`, and try the different commands. The CircleCI configuration can also be tested,
+by simply adding the cloned repo to your CircleCI account.
+
+## Caveats
+
+Not everything works out of the box (as this repo was never intended to be cloned and used as is).
+
+- `yarn analyze` will fail, because the example only includes one bundle, and `source-map-explorer` will therefore complain that is has nothing to check.
+- The deployment script found in `.circleci/deploy.sh` will fail in CircleCI for multiple reasons.
+  - The IPs and user variables are random, and should be updated according to your own needs.
+  - CircleCI hasn't been given SSH access to your servers. You can add SSH keys in CircleCI by opening the project in CircleCI > Settings > SSH Permissions
+- This naturally means that running CircleCI on this project will fail miserably.
+
 # The commands
 
 - `yarn format` - format code syntax across project.
 - `yarn lint` - lint code style across project.
+- `yarn typecheck` - Runs typechecking on all TypeScript files.
 - `yarn test` - run all tests.
-- `yarn watch` - continously run all tests, watching for file changes.
+- `yarn watch` - continuously run all tests, watching for file changes.
 - `yarn plop` - generate new files.
-- `yarn analyze` - analyze the bundle, and visualize the dependency tree.
+- `yarn build` - compile TypeScript files to `build` directory.
+- `yarn analyze` - analyze the bundle, and visualize the dependency tree. Requires that the project has been built beforehand.
 - `yarn analyze:ci` - generate an html file with the dependency tree - should only be used by CircleCI, not manually.
-- `yarn build` - compile TypeScript files to JavaScript.
 
 # The tools
 Each tool will briefly be described in this section, along with the command to run it.
@@ -80,11 +95,16 @@ Used to get an overview of all the dependencies in your project, to scout for un
 The repo has the following structure:
 ```
 project-root
-│   README.md                    // you're reading it
 │   package.json                 // Contains all the dependencies, and describes the scripts
 │   plopfile.js                  // Configures the plop generator
 │   tslint.json                  // Rules for TSLint
 │   tsconfig.json                // Configuration for TypeScript - is very different for each project!
+│   ...
+│   
+└───src
+│   │   index.ts                 // Example code
+│	└───components               // Example code
+│	└───__tests__                // Example tests
 │
 └───.circleci
 │   │   config.yml               // Configuration for the CircleCI steps
