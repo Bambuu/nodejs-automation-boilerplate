@@ -5,13 +5,14 @@
 		"@types/jest": "^21.1.2",
 		"@types/node": "^8.0.33",
 		"husky": "latest",
-		"ts-jest": "latest",
 		"jest": "latest",
 		"lint-staged": "latest",
 		"plop": "latest",
 		"prettier": "latest",
 		"source-map-explorer": "latest",
+		"ts-jest": "latest",
 		"tslint": "latest",
+		"tslint-react": "latest",
 		"typescript": "latest"
 	},
 	"scripts": {
